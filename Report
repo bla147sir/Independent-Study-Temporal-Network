@@ -1,0 +1,49 @@
+Report
+
+------major part-------
+<slideGraph.cpp>
+-functions description
+	-exe: split the input dataset into several intervals based on sliding window and step length. Since the graph used in here are directed graphs, we change them into undirected graphs by following rules: if we getline node1 -> node2, we store node1 - node2 and node2 - node1. When finished spliting, it call runNucleus.
+	
+	-runNucleus: run the nucleus decomposition based on which algorithm user input and the Hierarchy input is default to 'YES'. More description of the nucleus decompistion, check on README
+	
+	-summary: summarize all kinds of results of .nucleus output files of nucleus decomposition, and give the summary files of the results. The results are:
+		number of leaves
+		number of subgraph
+		average number of children
+		max K
+		num of subgraph who have multiple childs
+	
+	-calculate: calculate the results, called by summary
+	
+	-drawGraph: use python3 to draw line chart of summaries, and generate the png files of summaries
+	-FYI: all these files name are based on stack overflow dataset
+
+<dataset>
+	-stack overflow datasets: from "http://snap.stanford.edu", which are directed graphs
+	-Autonomous systems graphs(AS): from "http://snap.stanford.edu", which are undirected graphs, and were split by one day a file (around 700 files). The slideGraph code does not deal with this kind of data format.  
+
+<folder src> 
+	-nucleus decomposition source code
+
+------- minor part------
+<folder 4_10>
+	-splitfile.cpp: split the stack overflow dataset by 6 months, and change into undirected graph.
+
+	-remove_directed.cpp: change the whole dataset into undirected graph, without splitting it.
+
+	-runAS.cpp: run nucleus decomposition on all the AS datasets.
+
+	-analyze_whole.cpp: summary stack overflow and AS output .nucleus file. Get the result files of:
+		number of leaves
+		number of subgraph
+		average number of children
+		max K
+		num of subgraph who have multiple childs:
+
+	-runStackSum.cpp: run analyze_whole.cpp on all kinds of stack overflow output file, such as a2q algo=12, c2q algo=23, and etc.
+
+	-chart.py: draw line charts based on the summary file.
+
+	-trace_node.cpp: get nodes of subgraph with the max k value, then find all subgraphs contains the nodes in all the output .nucleus file
+
